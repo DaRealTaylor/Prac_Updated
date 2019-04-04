@@ -1,39 +1,29 @@
-MIN_LENGTH = 4
-MAX_LENGTH = 10
+MINIMUM_LENGTH = 4
+
+
+def version_1():
+    password = input("Enter password of at least {} characters: ".format(MINIMUM_LENGTH))
+    while len(password) < MINIMUM_LENGTH:
+        password = input("Enter password of at least {} characters: ".format(MINIMUM_LENGTH))
+    print('*' * len(password))
+
 
 def main():
-    print("Please enter a valid password")
-    print("YOur pass word must be between", MIN_LENGTH, "and", MAX_LENGTH, "characters and contain:")
-    print("\t1 or more uppercase characters")
-    print("\t1 or more lowercase characters")
-    print("\t1 or more numbers")
-    get_password()
+    """Get and print password using functions."""
+    password = get_password(MINIMUM_LENGTH)
+    print_asterisks(password)
 
 
-def get_password():
-    password = input("> ")
-    while not is_valid_password(password):
-        print("Invalid password!")
-        password = input("> ")
-    print("*" * len(password))
+def get_password(minimum_length):
+    password = input("Enter password of at least {} characters: ".format(minimum_length))
+    while len(password) < minimum_length:
+        print("Password too short")
+        password = input("Enter password of at least {} characters: ".format(minimum_length))
+    return password
 
 
-def is_valid_password(password):
-    count_lower = 0
-    count_upper = 0
-    count_digit = 0
-    for char in password:
-        if char.isdigit():
-            count_digit =+1
-        elif char.islower():
-            count_lower=+1
-        elif char.isupper():
-            count_upper =+1
+def print_asterisks(sequence):
+    print('*' * len(sequence))
 
-        pass
-    if count_lower == 0 or count_upper == 0 or count_digit == 0:
-        return False
-
-    return True
 
 main()
